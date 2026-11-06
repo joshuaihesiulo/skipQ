@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-const CONTACT = { whatsapp: '', email: '' };
+const WAITLIST_EMAIL = 'skipq.org@gmail.com';
 
 export default function Waitlist() {
   const [msg, setMsg] = useState('');
@@ -27,16 +27,26 @@ export default function Waitlist() {
       return;
     }
 
-    setMsg('Saving...');
+    setMsg('Sending...');
+
+    // Save locally as backup
     try {
       const stored = JSON.parse(localStorage.getItem('skipq_waitlist') || '[]');
       stored.push(d);
       localStorage.setItem('skipq_waitlist', JSON.stringify(stored));
-      setMsg('You are on the list. We will reach out on WhatsApp soon.');
-      formRef.current.reset();
     } catch (x) {
-      setMsg('We could not save this right now. Please use the WhatsApp or email button below.');
+      // ignore localStorage errors
     }
+
+    // Build and open mailto link to send waitlist submission to SkipQ
+    const subject = encodeURIComponent('New SkipQ Waitlist Signup');
+    const body = encodeURIComponent(
+      `New waitlist signup:\n\nName: ${d.name}\nEmail: ${d.email}\nWhatsApp: ${d.whatsapp}\nDate: ${new Date(d.at).toLocaleString()}`
+    );
+    window.location.href = `mailto:${WAITLIST_EMAIL}?subject=${subject}&body=${body}`;
+
+    setMsg('Your email client has opened to send your waitlist details to skipq.org@gmail.com.');
+    formRef.current.reset();
   };
 
   return (
