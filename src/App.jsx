@@ -9,7 +9,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './index.css';
 
-const CONTACT = { whatsapp: '', email: 'skipq.org@gmail.com' };
+const CONTACT = { whatsapp: '2348020538749', email: 'skipq.org@gmail.com' };
 
 export default function App() {
   const [whatsappHref, setWhatsappHref] = useState('#contact');
