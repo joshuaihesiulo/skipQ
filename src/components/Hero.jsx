@@ -2,7 +2,6 @@ export default function Hero() {
   return (
     <section className="dark hero" id="top">
       <div className="hero-in">
-        <span className="tag">For barbers and barbershop owners</span>
         <h1 className="h" style={{ fontSize: 'clamp(42px,7vw,82px)', margin: '26px 0 0' }}>
           Make More From <span style={{ color: 'var(--lime)' }}>Every Chair.</span>
         </h1>

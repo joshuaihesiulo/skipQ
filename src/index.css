@@ -498,9 +498,9 @@
   }
   /* Desktop: hide 3-dot menu toggle and duplicate waitlist CTA */
   .mobile-menu-toggle {
-    display: none;
+    display: none !important;
   }
   .mobile-menu-cta {
-    display: none;
+    display: none !important;
   }
 }
